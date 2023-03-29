@@ -10,7 +10,7 @@ using namespace sc_core;
 
 class DoubleFilter : public sc_module {
 public:
-  tlm_utils::simple_target_socket<SobelFilter> t_skt;
+  tlm_utils::simple_target_socket<DoubleFilter> t_skt;
 
   sc_fifo<unsigned char> i_r;
   sc_fifo<unsigned char> i_g;
@@ -20,9 +20,9 @@ public:
   sc_fifo_out<unsigned char> o_b;
   sc_fifo_in<unsigned char> i_col_check;
 
-  SC_HAS_PROCESS(SobelFilter);
-  SobelFilter(sc_module_name n);
-  ~SobelFilter() = default;
+  SC_HAS_PROCESS(DoubleFilter);
+  DoubleFilter(sc_module_name n);
+  ~DoubleFilter() = default;
 
 private:
   void do_filter();

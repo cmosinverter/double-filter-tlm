@@ -7,12 +7,10 @@ int Initiator::read_from_socket(unsigned long int addr, unsigned char mask[],
   // Set up the payload fields. Assume everything is 4 bytes.
   trans.set_read();
   trans.set_address((sc_dt::uint64)addr);
-
-  trans.set_byte_enable_length((const unsigned int)dataLen);
-  trans.set_byte_enable_ptr((unsigned char *)mask);
-
-  trans.set_data_length((const unsigned int)dataLen);
   trans.set_data_ptr((unsigned char *)rdata);
+  trans.set_data_length((const unsigned int)dataLen);
+  trans.set_byte_enable_ptr((unsigned char *)mask);
+  trans.set_byte_enable_length((const unsigned int)dataLen);
 
   // Transport.
   do_trans(trans);
@@ -27,12 +25,10 @@ int Initiator::write_to_socket(unsigned long int addr, unsigned char mask[],
   // Set up the payload fields. Assume everything is 4 bytes.
   trans.set_write();
   trans.set_address((sc_dt::uint64)addr);
-
-  trans.set_byte_enable_length((const unsigned int)dataLen);
-  trans.set_byte_enable_ptr((unsigned char *)mask);
-
-  trans.set_data_length((const unsigned int)dataLen);
   trans.set_data_ptr((unsigned char *)wdata);
+  trans.set_data_length((const unsigned int)dataLen);
+  trans.set_byte_enable_ptr((unsigned char *)mask);
+  trans.set_byte_enable_length((const unsigned int)dataLen);
 
   // Transport.
   do_trans(trans);

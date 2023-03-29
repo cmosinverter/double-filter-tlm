@@ -8,11 +8,7 @@ using namespace std;
 using namespace sc_core;
 
 #include "Initiator.h"
-#include "filter_def.h"
-
-const int WHITE = 255;
-const int BLACK = 0;
-const int THRESHOLD = 90;
+#include "filter_def.h" 
 
 class Testbench : public sc_module {
 public:
@@ -48,6 +44,6 @@ private:
   unsigned char *source_bitmap;
   unsigned char *target_bitmap;
 
-  void do_sobel();
+  void do_filter();
 };
 #endif

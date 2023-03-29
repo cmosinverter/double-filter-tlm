@@ -5,7 +5,7 @@ using namespace std;
 // Wall Clock Time Measurement
 #include <sys/time.h>
 
-#include "SobelFilter.h"
+#include "DoubleFilter.h"
 #include "Testbench.h"
 
 // TIMEVAL STRUCT IS Defined ctime
@@ -22,8 +22,8 @@ int sc_main(int argc, char **argv) {
     return 0;
   }
   Testbench tb("tb");
-  SobelFilter sobel_filter("sobel_filter");
-  tb.initiator.i_skt(sobel_filter.t_skt);
+  DoubleFilter double_filter("doubel_filter");
+  tb.initiator.i_skt(double_filter.t_skt);
 
   tb.read_bmp(argv[1]);
   sc_start();
