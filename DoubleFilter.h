@@ -15,10 +15,10 @@ public:
   sc_fifo<unsigned char> i_r;
   sc_fifo<unsigned char> i_g;
   sc_fifo<unsigned char> i_b;
-  sc_fifo_out<unsigned char> o_r;
-  sc_fifo_out<unsigned char> o_g;
-  sc_fifo_out<unsigned char> o_b;
-  sc_fifo_in<unsigned char> i_col_check;
+  sc_fifo<unsigned char> o_r;
+  sc_fifo<unsigned char> o_g;
+  sc_fifo<unsigned char> o_b;
+  sc_fifo<unsigned char> i_col_check;
 
   SC_HAS_PROCESS(DoubleFilter);
   DoubleFilter(sc_module_name n);

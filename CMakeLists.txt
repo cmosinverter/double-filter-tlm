@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.0)
 
 # Define the project name of these source code
-project (sobel)
+project (double)
 
 # We use a CMake module to fine the SystemC library. Define the module path
 set (CMAKE_PREFIX_PATH $ENV{SYSTEMC_HOME})
@@ -24,18 +24,18 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -D CLOCK_PERIOD=1.0")
 
 # Define the executable name and its source code
 file(GLOB SRC "*.cpp")
-add_executable(sobel ${SRC})
+add_executable(double ${SRC})
 
 # Define the used libraries of the executable, Equal to -l flags of g++
 # In here, the libraries are given in apsolute path. hence no needs for -L
 # flag
-target_link_libraries(sobel SystemC::systemc)
+target_link_libraries(double SystemC::systemc)
 
-# Add test sobel filter command
+# Add test double filter command
 set(OUT_FILE "out.bmp")
 add_custom_command(OUTPUT ${OUT_FILE}
-	COMMAND ./sobel ${CMAKE_SOURCE_DIR}/lena_std_short.bmp ./${OUT_FILE}
-	DEPENDS sobel
+	COMMAND ./double ${CMAKE_SOURCE_DIR}/lena_std_short.bmp ./${OUT_FILE}
+	DEPENDS double
 	WORKING_DIRECTORY ${CMAKE_BINARY_DIR}	
 )
 add_custom_target(run 

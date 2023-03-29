@@ -3,6 +3,8 @@
 
 #include "DoubleFilter.h"
 
+using namespace std;
+
 DoubleFilter::DoubleFilter(sc_module_name n)
     : sc_module(n), t_skt("t_skt"), base_offset(0) {
   SC_THREAD(do_filter);
@@ -14,12 +16,20 @@ DoubleFilter::DoubleFilter(sc_module_name n)
 void DoubleFilter::do_filter() {
 
   std::vector<int> reds, greens, blues;
-  unsigned char flag;
   int counter = 0;
-
+  unsigned char flag;
   while (true) {
 
     flag = i_col_check.read();
+    if (flag == 1){
+      for (int i = 0; i < 8; i ++){
+        flag = i_col_check.read();
+      }
+    } else {
+      for (int i = 0; i < 2; i ++){
+        flag = i_col_check.read();
+      }
+    }
 
     // Median filter
     int center_r, center_g, center_b;
@@ -27,8 +37,7 @@ void DoubleFilter::do_filter() {
     int sum_g = 0;
     int sum_b = 0;
 
-    if (flag == 255) {
-      
+    if (flag == 1) {
       reds.clear();
       greens.clear();
       blues.clear();

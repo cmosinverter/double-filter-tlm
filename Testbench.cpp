@@ -129,6 +129,7 @@ void Testbench::do_filter() {
   //wait(5 * CLOCK_PERIOD, SC_NS);
   for (y = 0; y != height; ++y) {
     for (x = 0; x != width; ++x) {
+      // cout << x << ' ' << y << endl;
       if (x == 0) {
         first_col = 1;
       } else {
@@ -140,7 +141,7 @@ void Testbench::do_filter() {
       yBound = MASK_Y / 2;            // 1
 
       if (first_col) {
-        data.uc[4] = 255;
+        data.uc[3] = 1;
         for (v = -yBound; v != yBound + adjustY; ++v) {   //-1, 0, 1
           for (u = -xBound; u != xBound + adjustX; ++u) { //-1, 0, 1
             if (x + u >= 0 && x + u < width && y + v >= 0 && y + v < height) {
@@ -167,7 +168,7 @@ void Testbench::do_filter() {
           }
         }
       } else {
-        data.uc[4] = 0;
+        data.uc[3] = 0;
         for (v = -yBound; v != yBound + adjustY; ++v) {   //-1, 0, 1
           for (u = xBound; u != xBound + adjustX; ++u) { //1
             if (x + u >= 0 && x + u < width && y + v >= 0 && y + v < height) {
@@ -207,11 +208,8 @@ void Testbench::do_filter() {
       //debug
       //cout << "Now at " << sc_time_stamp() << endl; //print current sc_time
 
-      if(i_r.num_available()==0) wait(i_r.data_written_event());
       *(target_bitmap + bytes_per_pixel * (width * y + x) + 2) = data.uc[0];
-      if(i_g.num_available()==0) wait(i_g.data_written_event());
       *(target_bitmap + bytes_per_pixel * (width * y + x) + 1) = data.uc[1];
-      if(i_b.num_available()==0) wait(i_b.data_written_event());
       *(target_bitmap + bytes_per_pixel * (width * y + x) + 0) = data.uc[2];
     }
   }
