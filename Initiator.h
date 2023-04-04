@@ -21,5 +21,6 @@ public:
 
   void do_trans(tlm::tlm_generic_payload &trans);
   tlm::tlm_generic_payload trans;
+  sc_core::sc_time delay = sc_time(10, SC_NS);
 };
 #endif

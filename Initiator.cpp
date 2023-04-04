@@ -39,13 +39,12 @@ int Initiator::write_to_socket(unsigned long int addr, unsigned char mask[],
 } // writeUpcall()
 
 void Initiator::do_trans(tlm::tlm_generic_payload &trans) {
-  sc_core::sc_time dummyDelay = sc_core::SC_ZERO_TIME;
+  
 
   // Call the transport and wait for no time, which allows the thread to yield
   // and others to get a look in!
 
-  i_skt->b_transport(trans, dummyDelay);
-  //wait(sc_core::SC_ZERO_TIME);
-  wait(dummyDelay);
+  i_skt->b_transport(trans, delay);
+  wait(delay);
 
 } // do_trans()
