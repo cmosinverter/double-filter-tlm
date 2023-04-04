@@ -1,7 +1,7 @@
 ## Double Filter Using TLM P2P
 
 
-This is the project that implements ee6470 homework 1, (40 pt) Median and mean filters with FIFO channels
+This is the project that implements ee6470 homework 2, (40 pt) Median and mean filters with TLM interface
 
 ## Usage
 1. Clone the file to ./ee6470 folder (Git Bash)
